@@ -1,0 +1,9 @@
+module.exports = {
+  singleQuote: true,
+  trailingComma: "all",
+  bracketSpacing: true,
+  bracketSameLine: false,
+  semi: true,
+  tabWidth: 2,
+  useTabs: false,
+};
