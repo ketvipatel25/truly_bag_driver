@@ -25,6 +25,12 @@ import {
   FillGreenIcon,
   HomeBlueIcon,
   HomeIcon,
+  BlueDeliveryIcon,
+  DeliveryIcon,
+  EarningIcon,
+  BlueEarningIcon,
+  ProductIcon,
+  BlueProfileIcon,
 } from "../assets";
 
 // Utils
@@ -33,6 +39,7 @@ import HomeScreen from "../Screens/HomeScreen";
 import DeliveriesScreen from "../Screens/DeliveriesScreen";
 import EarningsScreen from "../Screens/EarningsScreen";
 import ProfileScreen from "../Screens/ProfileScreen";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -55,7 +62,7 @@ const GradientText = ({ text }) => (
     }
   >
     <LinearGradient
-      colors={["#22C55E", "#22C55E"]}
+      colors={["#5029F4", "#5029F4"]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1.2 }}
     >
@@ -115,11 +122,11 @@ const MainTabNavigator = () => {
 
         // Determine if we're on the main tab screen
         const isMainScreen =
-          (route.name === "HomeStackScreen" &&
+          (route.name === "HomeStack" &&
             (childRouteName === "" || childRouteName === "HomeScreen")) ||
-          (route.name === "DeliveriesStackScreen" &&
+          (route.name === "DeliveriesStack" &&
             (childRouteName === "" || childRouteName === "DeliveriesScreen")) ||
-          (route.name === "EarningsStackScreen" &&
+          (route.name === "EarningsStack" &&
             (childRouteName === "" || childRouteName === "EarningsScreen")) ||
           (route.name === "ProfileStack" &&
             (childRouteName === "" || childRouteName === "ProfileScreen"));
@@ -137,14 +144,6 @@ const MainTabNavigator = () => {
             borderTopRightRadius: 12,
           },
           tabBarIcon: ({ focused }) => {
-            // const iconSizeStyles = {
-            //   ExploreStack: {width: hp(15), height: hp(16)},
-            //   StayStack: {width: hp(16), height: hp(16)},
-            //   SavedStack: {width: hp(16), height: hp(16)},
-            //   InboxStack: {width: hp(16), height: hp(16)},
-            //   ProfileStack: {width: hp(13), height: hp(16)},
-            // };
-
             const iconSizeStyles = {
               HomeStack: { width: hp(20), height: hp(20) },
               DeliveriesStack: { width: hp(20), height: hp(20) },
@@ -160,19 +159,16 @@ const MainTabNavigator = () => {
                 break;
               case "DeliveriesStack":
                 IconComponent =
-                  focused && isMainScreen ? HomeBlueIcon : HomeIcon;
+                  focused && isMainScreen ? BlueDeliveryIcon : DeliveryIcon;
                 break;
-              // case 'SavedStack':
-              //   IconComponent = focused && isMainScreen ? FillIcon : SavedIcon;
-              //   break;
 
               case "EarningsStack":
-                IconComponent = focused ? HomeBlueIcon : HomeIcon;
+                IconComponent = focused ? BlueEarningIcon : EarningIcon;
                 break;
 
               case "ProfileStack":
                 IconComponent =
-                  focused && isMainScreen ? HomeBlueIcon : HomeIcon;
+                  focused && isMainScreen ? BlueProfileIcon : ProfileIcon;
                 break;
               default:
                 IconComponent = ExploreIcon;
@@ -193,6 +189,7 @@ const MainTabNavigator = () => {
                 />
               </View>
             );
+            ``;
           },
           tabBarLabel: ({ focused }) =>
             focused && isMainScreen ? (

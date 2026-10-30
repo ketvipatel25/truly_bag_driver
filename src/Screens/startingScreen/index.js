@@ -87,12 +87,17 @@ const StartingScreen = () => {
             height: "100%",
           }}
         >
-          <View style={{ marginTop: Platform.OS === "ios" ? 100 : 30 }}>
+          <View
+            style={{
+              marginTop: Platform.OS === "ios" ? hp(100) : hp(34),
+              // backgroundColor: "red",
+            }}
+          >
             {/* <TrulyBag />
              */}
             <TrulyBagIcon />
           </View>
-          <View style={{ marginHorizontal: wp(66), marginTop: hp(38) }}>
+          <View style={{ marginHorizontal: wp(66), marginTop: hp(35) }}>
             <Text
               style={{
                 fontSize: fontSize(16),
@@ -218,20 +223,6 @@ const StartingScreen = () => {
               </Text>
             </Text>
           </View>
-          <View
-            pointerEvents="none"
-            style={{
-              // width: '100%',
-              height: hp(1),
-              backgroundColor: "#E3E3E3",
-              position: "absolute",
-              bottom: hp(45),
-
-              left: wp(39),
-              right: wp(39),
-            }}
-          />
-          {/* <SellerStartingScreenBottomButtonComponent ref={sellerRef} /> */}
         </View>
       </SafeAreaView>
     </GestureHandlerRootView>

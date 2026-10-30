@@ -76,16 +76,26 @@ const LoginBottomSheet = forwardRef((props, ref) => {
     return formattedText.slice(0, 13);
   };
   const handleVerifyCode = () => {
-    const value = inputValue.trim();
+    console.log("Login button pressed");
 
-    console.log("Verify Code button pressed", value);
+    // Close Login bottom sheet
+    ref.current?.close();
 
+    // Open Main Tabs and show Home screen
     setTimeout(() => {
-      ref.current?.close();
-      navigation.navigate("HomeScreen");
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: "MainTabs",
+            state: {
+              routes: [{ name: "HomeStack" }],
+            },
+          },
+        ],
+      });
     }, 300);
   };
-
   const handleResetPassword = () => {
     console.log("Handle Reset Password");
 
@@ -322,10 +332,11 @@ const LoginBottomSheet = forwardRef((props, ref) => {
             borderWidth: 1,
             borderColor: "#D1D1D1",
             height: hp(50),
-            width: "100%",
+            // width: "100%",
             borderRadius: wp(27),
             alignItems: "center",
             justifyContent: "center",
+            marginHorizontal: wp(38),
           }}
         >
           <Text
@@ -654,8 +665,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: fontSize(20),
+    fontFamily: fontFamily.poppins600,
     color: "#000000",
   },
 });
